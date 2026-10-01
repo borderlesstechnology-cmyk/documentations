@@ -63,4 +63,61 @@ Once verified, the status will turn into a green checkmark indicating Valid Conf
 
 Vercel will automatically issue a free SSL certificate for [https://yourdomain.com](https://yourdomain.com).
 
-Step 1: Open Mail Settings in NamecheapLog in to your Namecheap Account.Click Domain List on the left menu and click Manage next to your domain.Select the Advanced DNS tab at the top.Scroll down to the Mail Settings section.In the dropdown menu, change the selection from No Email / Email Forwarding to Custom MX.Step 2: Add MX RecordsIn the Mail Settings section, add these two MX records:Record TypeHostPriorityValue / TargetMX Record@10mx1.privateemail.comMX Record@21mx2.privateemail.com(Note: If Namecheap only asks for Priority and Value, set Priority to 10 for mx1 and 21 or 10 for mx2).Step 3: Add TXT Records for Email Security (SPF & DKIM)Scroll back up to the Host Records section on the same Advanced DNS page. Adding an SPF and DKIM record ensures your outgoing emails don't end up in spam folders.Click Add New Record for each of the following:1. SPF Record (Prevents Email Spoofing)Type: TXT RecordHost: @Value: v=spf1 include:spf.privateemail.com ~allTTL: Automatic2. Autoconfig CNAME (Optional, for easy setup in mail apps like Outlook / Apple Mail)Type: CNAME RecordHost: mailValue: privateemail.com.TTL: AutomaticClick the green checkmark to save all new records.Step 4: Access Your EmailWait around 5 to 30 minutes for the DNS changes to propagate.Go to privateemail.com.Log in using your full business email address (e.g., info@yourdomain.com) and the password you set up when purchasing the email plan in Namecheap.
+Since you already purchased a **Namecheap Private Email** mailbox, you need to add Namecheap's MX and TXT records to your domain's **Advanced DNS** settings.
+
+Follow these steps to connect your Namecheap Private Email:
+
+---
+
+### Step 1: Open Mail Settings in Namecheap
+
+1. Log in to your [Namecheap Account](https://www.namecheap.com/).
+2. Click **Domain List** on the left menu and click **Manage** next to your domain.
+3. Select the **Advanced DNS** tab at the top.
+4. Scroll down to the **Mail Settings** section.
+5. In the dropdown menu, change the selection from *No Email / Email Forwarding* to **Custom MX**.
+
+---
+
+### Step 2: Add MX Records
+
+In the **Mail Settings** section, add these two MX records:
+
+| Record Type | Host | Priority | Value / Target |
+| --- | --- | --- | --- |
+| **MX Record** | `@` | `10` | `mx1.privateemail.com` |
+| **MX Record** | `@` | `21` | `mx2.privateemail.com` |
+
+*(Note: If Namecheap only asks for Priority and Value, set Priority to `10` for `mx1` and `21` or `10` for `mx2`)*.
+
+---
+
+### Step 3: Add TXT Records for Email Security (SPF & DKIM)
+
+Scroll back up to the **Host Records** section on the same **Advanced DNS** page. Adding an SPF and DKIM record ensures your outgoing emails don't end up in spam folders.
+
+Click **Add New Record** for each of the following:
+
+#### 1. SPF Record (Prevents Email Spoofing)
+
+* **Type:** `TXT Record`
+* **Host:** `@`
+* **Value:** `v=spf1 include:spf.privateemail.com ~all`
+* **TTL:** `Automatic`
+
+#### 2. Autoconfig CNAME (Optional, for easy setup in mail apps like Outlook / Apple Mail)
+
+* **Type:** `CNAME Record`
+* **Host:** `mail`
+* **Value:** `privateemail.com.`
+* **TTL:** `Automatic`
+
+Click the **green checkmark** to save all new records.
+
+---
+
+### Step 4: Access Your Email
+
+1. Wait around **5 to 30 minutes** for the DNS changes to propagate.
+2. Go to **[privateemail.com](https://privateemail.com)**.
+3. Log in using your full business email address (e.g., `info@yourdomain.com`) and the password you set up when purchasing the email plan in Namecheap.
