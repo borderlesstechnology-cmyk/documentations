@@ -1,67 +1,67 @@
-Step 1: Add your domain in Vercel
-Open your Vercel Dashboard and click on your deployed project.
+Here are the step-by-step instructions to connect your **Namecheap** domain to your deployed **Vercel** project:
 
-Click Settings in the top navigation bar, then select Domains from the left sidebar.
+---
 
-In the input box under "Add Domain", type your full domain name (e.g., yourdomain.com).
+### Step 1: Add your domain in Vercel
 
-Click Add.
+1. Open your [Vercel Dashboard](https://vercel.com/dashboard) and click on your deployed project.
+2. Click **Settings** in the top navigation bar, then select **Domains** from the left sidebar.
+3. In the input box under "Add Domain", type your full domain name (e.g., `yourdomain.com`).
+4. Click **Add**.
+5. Select the **Recommended** option (this handles both `yourdomain.com` and `[www.yourdomain.com](https://www.yourdomain.com)`).
+6. Leave this tab open. Vercel will temporarily show an **Invalid Configuration** status—this is expected until you update Namecheap.
 
-Select the Recommended option (this handles both yourdomain.com and [www.yourdomain.com](https://www.yourdomain.com)).
+---
 
-Leave this tab open. Vercel will temporarily show an Invalid Configuration status—this is expected until you update Namecheap.
+### Step 2: Configure DNS Records in Namecheap
 
-Step 2: Configure DNS Records in Namecheap
-Open a new tab and log into your Namecheap Account.
+1. Open a new tab and log into your [Namecheap Account](https://www.namecheap.com/).
+2. Click **Domain List** on the left menu.
+3. Find your domain and click the **Manage** button next to it.
+4. Under the **Domain** tab, scroll down to **Nameservers**:
+* Make sure it is set to **Namecheap BasicDNS** (or **Namecheap WebDNS**).
+* *If it's set to Custom DNS, switch it back to Namecheap BasicDNS and click the green checkmark.*
 
-Click Domain List on the left menu.
 
-Find your domain and click the Manage button next to it.
+5. Click the **Advanced DNS** tab near the top of the page.
+6. Under the **Host Records** section, delete any existing default records (like default `A Record` pointing to Namecheap IP or `URL Redirect Record`) by clicking the **trash can** icon next to them.
+7. Click **Add New Record** and create the following two records:
 
-Under the Domain tab, scroll down to Nameservers:
+#### Record 1: Apex / Root Domain
 
-Make sure it is set to Namecheap BasicDNS (or Namecheap WebDNS).
+* **Type:** `A Record`
+* **Host:** `@`
+* **Value:** `76.76.21.21`
+* **TTL:** `Automatic` (or `1 min`)
+* Click the **green checkmark** icon to save.
 
-If it's set to Custom DNS, switch it back to Namecheap BasicDNS and click the green checkmark.
+#### Record 2: WWW Subdomain
 
-Click the Advanced DNS tab near the top of the page.
+* **Type:** `CNAME Record`
+* **Host:** `www`
+* **Value:** `cname.vercel-dns.com.` *(include the trailing period if Namecheap accepts it, otherwise just `cname.vercel-dns.com`)*
+* **TTL:** `Automatic` (or `1 min`)
+* Click the **green checkmark** icon to save.
 
-Under the Host Records section, delete any existing default records (like default A Record pointing to Namecheap IP or URL Redirect Record) by clicking the trash can icon next to them.
+---
 
-Click Add New Record and create the following two records:
+### Step 3: Verify & Complete Setup in Vercel
 
-Record 1: Apex / Root Domain
-Type: A Record
+1. Switch back to your **Vercel Dashboard** > **Settings** > **Domains**.
+2. Click the **Refresh** button next to your domain entries.
+3. Wait a few minutes for DNS changes to propagate.
+4. Once verified, the status will turn into a green checkmark indicating **Valid Configuration**.
+5. Vercel will automatically issue a free SSL certificate for `[https://yourdomain.com](https://yourdomain.com)`.
 
-Host: @
 
-Value: ip from vercel dashboard
 
-TTL: Automatic (or 1 min)
 
-Click the green checkmark icon to save.
 
-Record 2: WWW Subdomain
-Type: CNAME Record
 
-Host: www
 
-Value: value provided from vercel dashboard
 
-TTL: Automatic (or 1 min)
 
-Click the green checkmark icon to save.
 
-Step 3: Verify & Complete Setup in Vercel
-Switch back to your Vercel Dashboard > Settings > Domains.
-
-Click the Refresh button next to your domain entries.
-
-Wait a few minutes for DNS changes to propagate.
-
-Once verified, the status will turn into a green checkmark indicating Valid Configuration.
-
-Vercel will automatically issue a free SSL certificate for [https://yourdomain.com](https://yourdomain.com).
 
 Since you already purchased a **Namecheap Private Email** mailbox, you need to add Namecheap's MX and TXT records to your domain's **Advanced DNS** settings.
 
